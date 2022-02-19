@@ -1,0 +1,27 @@
+<h1 class="p-4 text-center bg-danger bg-opacity-50 display-2">Our speciallies</h1>
+<!-- Card Container -->
+<div class="row justify-content-center pb-5">
+  <div class="row justify-content-center py-5 content-container">
+      <div class="card col-lg-3 col-md-5 col-sm-10 col-11 p-0 m-2" *ngFor="let dish of dishes ; index as dishId">
+        <div class="img-task" style="background-image: url({{dish.image}});"></div>
+        <div class="card-body pb-2">
+          <h5 class="card-title">{{dish.name}}</h5>
+          <p class="card-text">{{dish.description}}</p>
+        </div>
+        <hr>
+        <div class="card-body py-2">
+            <span>{{dish.price | currency:"€"}}</span>
+        </div>
+        <hr>
+        <div class="card-body py-2">
+          <ng-template [ngIf]="dish.available" [ngIfElse]="none">
+            <button class="btn btn-primary me-3" routerLink="/dishes/{{dishId}}">Details</button>
+            <button class="btn btn-success" (click)="addToCart(dishId)">Order</button>
+            </ng-template>
+          <ng-template #none>
+            <p class="text-danger">Sorry, this dish isn't available<b></b></p>
+          </ng-template>
+        </div>
+      </div>
+  </div>
+</div>

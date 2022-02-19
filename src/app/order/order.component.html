@@ -1,0 +1,103 @@
+<div class="row justify-content-center ">
+  <div class="row justify-content-center py-5 content-container">
+    <!-- cart section -->
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="mb-0">Cart - {{counter}} item(s)</h5>
+        </div>
+        <div class="card-body pb-0">
+          <div class="cart-item" *ngFor="let item of items; index as dishId">
+            <div class="card border-0 border-bottom mb-5 pb-3">
+              <div class="row g-0">
+                <div class="col-md-3 d-none d-md-block py-2">
+                  <img src="{{ item.image }}" class="img-fluid rounded-start" alt="{{ item.name }}">
+                </div>
+                <div class="col-md-7 col-8">
+                  <div class="card-body">
+                    <h6 class="card-title">{{ item.name }}</h6>
+                    <p class="card-text">{{ item.description }} </p>
+                  </div>
+                </div>
+                <div class="col-md-2 col-4">
+                  <div class="card-body px-0">
+                    <h6 class="card-title">Price: {{ item.price | currency:"€" }}</h6>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- summary section -->
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="mb-0">Summary</h5>
+        </div>
+        <div class="card-body mt-1 border-bottom border-2 container">
+          <div class="row mb-1">
+            <div class="col-7 pe-0">Dishes</div>
+            <div class="col-5 ps-0 text-end">{{ itemSum  | currency:"€"}}</div>
+          </div>
+          <div class="row mb-2">
+            <div class="col-7 pe-0">Service</div>
+            <div class="col-5 ps-0 text-end">{{ service  | currency:"€"}}</div>
+          </div>
+          <ng-template [ngIf]="discount > 0">
+            <div class="row mb-2">
+              <div class="col-7 pe-0">Discount</div>
+              <div class="col-5 ps-0 text-end">{{ discount  | currency:"€"}}</div>
+            </div>
+          </ng-template>
+        </div>
+        <div class="card-body mt-1 container">
+          <ng-template [ngIf]="discount > 0" [ngIfElse]="none">
+            <div class="row">
+              <div class="col-7 pe-0">Total without discount:</div>
+              <div class="col-5 ps-0 text-end">{{ total  | currency:"€"}}</div>
+            </div>
+            <div class="row">
+              <div class="col-7 pe-0"><b>Total amount<br>(incl. VAT)</b> </div>
+              <div class="col-5 ps-0 text-end align-self-center"><b>{{ total - discount  | currency:"€"}}</b></div>
+            </div>
+            </ng-template>
+            <ng-template #none>
+              <div class="row">
+                <div class="col-7 pe-0"><b>Total amount<br>(incl. VAT)</b> </div>
+                <div class="col-5 ps-0 text-end align-self-center"><b>{{ total  | currency:"€"}}</b></div>
+              </div>
+            </ng-template>
+        </div>
+      </div>
+    </div>
+    <!-- order form section -->
+    <div class="col my-5 bg-light bg-opacity-50 mx-3 px-0">
+      <div class="card p-3 pb-0 bg-transparent">
+        <h1>Order Form</h1>
+        <p>please fill up contact data for delivery</p>
+        <form [formGroup]="info" (ngSubmit)="onSubmit()">
+          <div class="mb-2">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="name" placeholder="Hugo Mayer" formControlName="name">
+          </div>
+          <div class="mb-2">
+            <label for="address" class="form-label">Address</label>
+            <input type="text" class="form-control" id="address" placeholder="Wurstelway 99a, 1234 Wurstelhausen" formControlName="address">
+          </div>
+          <div class="mb-2">
+            <label for="tel" class="form-label">Telefon</label>
+            <input type="number" class="form-control" id="tel" placeholder="0123 456789" formControlName="tel">
+          </div>
+          <div class="mb-3">
+            <label for="notes" class="form-label">Remarks and wishes</label>
+            <textarea class="form-control" id="notes" rows="3" formControlName="notes" placeholder="best before 18:00, knock on 4th door">
+            </textarea>
+          </div>
+          <button class="btn btn-primary mb-3" type="submit">Purchase</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

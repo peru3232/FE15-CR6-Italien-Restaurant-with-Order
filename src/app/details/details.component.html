@@ -1,0 +1,21 @@
+<h1 class="p-4 text-center bg-danger bg-opacity-50 display-2">Details</h1>
+<!-- Contant Container -->
+<div class="row justify-content-center pb-5">
+  <div class="row justify-content-center py-5 content-container">
+      <div class="card col-10 p-0 m-2">
+        <div class="bg-image" style="background-image: url({{dish.image}});"></div>
+        <div class="p-3">
+          <h5 class="card-title">{{dish.name}}</h5>
+          <p class="card-text">{{dish.description}}</p>
+          <p class="card-text">{{dish.addInfo}}</p>
+        </div>
+        <div class="px-3">
+            <p class="border-2 border-top border-bottom py-2 mb-0">Price : {{dish.price | currency:"€"}}</p>
+        </div>
+        <div class="py-2 text-center">
+          <button class="btn btn-primary mx-2" routerLink="/menu">Back</button>
+          <button class="btn btn-success mx-2" (click)="addToCart()">Order</button>
+        </div>
+      </div>
+  </div>
+</div>

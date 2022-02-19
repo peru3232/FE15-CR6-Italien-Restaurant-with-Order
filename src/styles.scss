@@ -1,1 +1,27 @@
 /* You can add global styles to this file, and also import other style files */
+a {
+  color: rgb(49, 43, 43);
+  text-decoration: none;
+  &:hover {
+      color: #fc8e8e !important;
+  }
+}
+
+h1 {
+  font-family: 'Great Vibes';
+}
+
+.content-container {
+  max-width: 1500px;
+}
+
+.img-task {
+  height: 25vH;
+  background-size: cover;
+}
+
+.bg-image {
+  height: 40vh;
+  background-size: cover;
+}
+
