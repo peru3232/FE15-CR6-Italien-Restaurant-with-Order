@@ -13,7 +13,14 @@ export class CartService {
   constructor() { }
 
   addToCart(dish: IDishes) {
+
+  if (this.items.length == 0) {
     this.items.push(dish);
+  } else if (this.items.find((val) => val.name == dish.name)) {
+    dish.qtty++;
+  } else {
+    this.items.push(dish);
+  }
   }
 
   getItems() {

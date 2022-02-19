@@ -5,4 +5,5 @@ export interface IDishes {
   addInfo: string;
   price: number;
   available: boolean;
+  qtty: number;
 }

@@ -23,6 +23,11 @@
                   <div class="card-body px-0">
                     <h6 class="card-title">Price: {{ item.price | currency:"€" }}</h6>
                   </div>
+                  <div class="cart-qtty-action col-3 d-flex">
+                    <i class="minus fa fa-minus-circle my-auto" ></i>
+                    <div class="cart-quantity p-4 h4">{{item.qtty}}</div>
+                    <i class="plus fa fa-plus-circle my-auto"></i>
+                  </div>
                 </div>
               </div>
             </div>

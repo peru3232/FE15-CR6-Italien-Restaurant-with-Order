@@ -46,11 +46,28 @@ export class OrderComponent implements OnInit {
     this.items = this.cartService.getItems();
     this.itemSum = 0;
     this.discount = 0;
-    this.counter = this.items.length;
-    this.items.forEach(element => this.itemSum += element.price);
+    this.items.forEach(element => {
+      this.itemSum += element.price * element.qtty
+      this.counter += element.qtty;
+    });
     this.service = Math.round(this.itemSum) / 10;
     this.total = this.itemSum + this.service;
     if (this.total > 40) {this.discount = Math.round(this.total * 1.5) / 10}
+
+    // let plus = document.getElementsByClassName("plus");
+    // console.log(plus);
+    // for (let i = 0; i < plus.length; i++) {
+    //     console.log(plus[i]);
+    //     plus[i].addEventListener("click", function() {
+    //         plusQtty(i);
+    //     });
+
+    // }
+    // }
   }
 
+  // function plusQtty(this: any, i: number) {
+  //   this.items[i].qtty++;
+  //   document.getElementsByClassName("cart-quantity")[i].innerHTML = this.items[i].qtty;
 }
+
