@@ -7,7 +7,7 @@
           <h5 class="mb-0">Cart - {{counter}} item(s)</h5>
         </div>
         <div class="card-body pb-0">
-          <div class="cart-item" *ngFor="let item of items; index as dishId">
+          <div class="cart-item" *ngFor="let item of items">
             <div class="card border-0 border-bottom mb-5 pb-3">
               <div class="row g-0">
                 <div class="col-md-3 d-none d-md-block py-2">
@@ -24,9 +24,9 @@
                     <h6 class="card-title">Price: {{ item.price | currency:"€" }}</h6>
                   </div>
                   <div class="cart-qtty-action col-3 d-flex">
-                    <i class="minus fa fa-minus-circle my-auto" ></i>
+                    <i class="minus fa fa-minus-circle my-auto" (click)="SubtractQtty(item.name)"></i>
                     <div class="cart-quantity p-4 h4">{{item.qtty}}</div>
-                    <i class="plus fa fa-plus-circle my-auto"></i>
+                    <i class="plus fa fa-plus-circle my-auto" (click)="AddQtty(item.name)"></i>
                   </div>
                 </div>
               </div>

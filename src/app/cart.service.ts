@@ -9,18 +9,26 @@ import { IDishes } from './Idishes';
 export class CartService {
 
   items: IDishes[] =[];
+  qtty: number = 0;
 
   constructor() { }
 
   addToCart(dish: IDishes) {
-
-  if (this.items.length == 0) {
-    this.items.push(dish);
-  } else if (this.items.find((val) => val.name == dish.name)) {
-    dish.qtty++;
-  } else {
-    this.items.push(dish);
+    if (this.items.find((val) => val.name == dish.name)) {
+      dish.qtty++;
+    } else {
+      this.items.push(dish);
+    }
   }
+
+  removeFromCart(index:string) {
+    const i:number = Number(index);
+    console.log(this.items[i]);
+    if (this.items[i].qtty > 1) {
+      this.items[i].qtty--;
+    } else {
+      this.items.splice(i,1)
+    }
   }
 
   getItems() {
