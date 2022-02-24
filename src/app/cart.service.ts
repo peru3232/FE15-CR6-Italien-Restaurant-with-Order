@@ -11,6 +11,9 @@ export class CartService {
   items: IDishes[] =[];
   qtty: number = 0;
   sum: number = 0;
+  discount: number = 0;
+  service: number = 0;
+  total: number = 0;
 
   constructor() { }
 
@@ -22,6 +25,7 @@ export class CartService {
     } else {
       this.items.push(dish);
     }
+    this.calcOrder();
   }
 
   removeFromCart(dish: IDishes) {
@@ -32,6 +36,22 @@ export class CartService {
     } else {
       this.items.splice(this.items.indexOf(dish),1);
     }
+    this.calcOrder();
+  }
+
+  calcOrder(): void {
+    this.calcReset();
+    this.items.forEach(element => {
+      this.sum += element.price * element.qtty
+      this.qtty += element.qtty;
+    });
+    this.service = Math.round(this.sum) / 10;
+    this.total = this.sum + this.service;
+    if (this.total > 40) {this.discount = Math.round(this.total * 1.5) / 10}
+  }
+
+  calcReset(): void {
+      this.sum = this.qtty = this.discount = this.service = this.total = 0;
   }
 
   getQtty() {
@@ -47,7 +67,7 @@ export class CartService {
   }
 
   clearCart() {
-    this.qtty = this.sum = 0;
+    this.calcReset();
     this.items = [];
     return this.items;
   }

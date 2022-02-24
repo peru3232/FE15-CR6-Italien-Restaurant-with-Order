@@ -31,38 +31,26 @@ export class OrderComponent implements OnInit {
   onSubmit(){
     console.warn('Your order has been submitted', this.info.value, this.items, Math.round((this.total-this.discount)*100)/100);
     this.items = this.cartService.clearCart();
-    this.calcReset();
     this.info.reset();
     this.ngOnInit();
   }
 
   ngOnInit(): void {
     this.items = this.cartService.getItems();
-    this.calcOrder();
-  }
-
-  calcOrder(): void {
-    this.calcReset();
-    this.items.forEach(element => {
-      this.itemSum += element.price * element.qtty
-      this.counter += element.qtty;
-    });
-    this.service = Math.round(this.itemSum) / 10;
-    this.total = this.itemSum + this.service;
-    if (this.total > 40) {this.discount = Math.round(this.total * 1.5) / 10}
-  }
-
-  calcReset(): void {
-      this.itemSum = this.counter = this.discount = 0;
+    this.counter = this.cartService.qtty;
+    this.itemSum = this.cartService.sum;
+    this.discount = this.cartService.discount;
+    this.service = this.cartService.service;
+    this.total = this.cartService.total;
   }
 
   AddQtty(element:IDishes): void {
-    this.cartService.addToCart(element)
-    this.calcOrder();
+    this.cartService.addToCart(element);
+    this.ngOnInit();
   }
 
   SubtractQtty(element:IDishes) {
     this.cartService.removeFromCart(element);
-    this.calcOrder();
+    this.ngOnInit();
   }
 }
