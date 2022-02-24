@@ -56,21 +56,13 @@ export class OrderComponent implements OnInit {
       this.itemSum = this.counter = this.discount = 0;
   }
 
-  AddQtty(name:string): void {
-    this.items.forEach(element => {
-      if (element.name == name) {
-        this.cartService.addToCart(element)
-      };
-    });
+  AddQtty(element:IDishes): void {
+    this.cartService.addToCart(element)
     this.calcOrder();
   }
 
-  SubtractQtty(name:string) {
-    for (let index in this.items) {
-      if (this.items[index].name == name) {
-        this.cartService.removeFromCart(index);
-      }
-    }
+  SubtractQtty(element:IDishes) {
+    this.cartService.removeFromCart(element);
     this.calcOrder();
   }
 }
