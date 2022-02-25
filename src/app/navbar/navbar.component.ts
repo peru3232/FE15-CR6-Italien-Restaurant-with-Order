@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { CartService } from '../cart.service';
 
 @Component({
@@ -6,11 +6,22 @@ import { CartService } from '../cart.service';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
+
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  counter: number = 0;
+  total: number = 0;
+
+  constructor(
+    private cartService: CartService
+  ) { }
 
   ngOnInit(): void {
+    this.counter = this.cartService.qtty;
+    this.total = this.cartService.total - this.cartService.discount;
   }
 
+  ngDoCheck():void {
+    this.ngOnInit();
+  }
 }

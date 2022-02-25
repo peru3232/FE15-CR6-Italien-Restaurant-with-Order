@@ -1,5 +1,5 @@
 <!-- fixed-top -->
-<nav class="navbar navbar-expand-sm navbar-light bg-light">
+<nav class="navbar fixed-top navbar-expand-sm navbar-light bg-light">
   <div class="container-fluid">
       <a class="navbar-brand" href="index.html"><img src="assets/images/logo.jpg" alt="logo" width="60"></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="true" aria-label="Toggle navigation">
@@ -16,9 +16,11 @@
               <li class="nav-item">
                   <a class="nav-link" routerLink="/menu">Menu</a>
               </li>
+            <ng-template [ngIf]="counter > 0">
               <li class="nav-item">
-                <a class="nav-link" routerLink="/order">Cart</a>
-            </li>
+                <a class="nav-link" routerLink="/order">Cart ({{counter}} - {{ total  | currency:"€"}})</a>
+              </li>
+            </ng-template>
         </ul>
           <ul class="navbar-nav d-flex flex-grow-1 justify-content-end">
             <li class="nav-item">
@@ -34,3 +36,4 @@
       </div>
   </div>
 </nav>
+<div class="pt-5"></div>

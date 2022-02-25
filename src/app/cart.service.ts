@@ -23,6 +23,7 @@ export class CartService {
     if (this.items.find((val) => val.name == dish.name)) {
       dish.qtty++;
     } else {
+      dish.qtty = 1;
       this.items.push(dish);
     }
     this.calcOrder();
