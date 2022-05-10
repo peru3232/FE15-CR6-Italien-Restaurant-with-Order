@@ -1,7 +1,9 @@
 # CR6 Ristorante Il Gambero Rosso
 Homepage for an restaurant with an dynamic shopping cart in Angular
+(to run the project, Angular CLI must be installed - you can use e.g. node.js: https://nodejs.org/en/download/)
 
-To view the pages simply clone this repo, run `ng serve` in a terminal and open `http://localhost:4200/` like descripted in the auto-generated instructions below under 'Development server' 
+
+To view the pages simply clone this repo, run `npm install -g @angular/cli` in a terminal inside the projects folder, later `ng serve` and open `http://localhost:4200/` like descripted in the auto-generated instructions below under 'Development server' 
 
 This project was done as a solution to a end of the week project during my fullstack course at code factory.
 
